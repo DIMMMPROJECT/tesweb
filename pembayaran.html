@@ -186,9 +186,43 @@
         .copy-button:hover {
             color: #00c6ff;
         }
+
+        /* Back Arrow Button Style */
+        .back-arrow {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            z-index: 1000;
+        }
+
+        .back-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+            color: white;
+        }
+
+        .back-arrow i {
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
+    <!-- Back Arrow -->
+    <a href="index.html" class="back-arrow">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+
     <div class="container">
         <div class="header">
             <h1>Metode Pembayaran</h1>
@@ -212,7 +246,7 @@
                     <div id="dana-details" class="payment-details">
                         <div class="payment-number">
                             <span>089515001716</span>
-                            <button class="copy-button" onclick="copyToClipboard('0812-3456-7890')">
+                            <button class="copy-button" onclick="copyToClipboard('089515001716')">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -237,7 +271,7 @@
                     <div id="gopay-details" class="payment-details">
                         <div class="payment-number">
                             <span>089515001716</span>
-                            <button class="copy-button" onclick="copyToClipboard('0812-3456-7891')">
+                            <button class="copy-button" onclick="copyToClipboard('089515001716')">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -262,7 +296,7 @@
                     <div id="seabank-details" class="payment-details">
                         <div class="payment-number">
                             <span>901943687816</span>
-                            <button class="copy-button" onclick="copyToClipboard('1234-5678-9012')">
+                            <button class="copy-button" onclick="copyToClipboard('901943687816')">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
@@ -287,7 +321,7 @@
                     <div id="ovo-details" class="payment-details">
                         <div class="payment-number">
                             <span>083827472284</span>
-                            <button class="copy-button" onclick="copyToClipboard('0812-3456-7892')">
+                            <button class="copy-button" onclick="copyToClipboard('083827472284')">
                                 <i class="fas fa-copy"></i>
                             </button>
                         </div>
