@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, proxy-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <title>tes Website</title>
+</head>
+
+<style>
+    body {
+        background: linear-gradient(135deg, #1a1a1a 0, #2d3436 100%);
+        color: #fff
+        
+    }
+
+    html {
+        scroll-behavior: smooth
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+    }
+
+    .banner {
+        padding: 14% 0 15%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: 25px
+    }
+
+    .changing-text,
+    .highlight,
+    .product-price {
+        color: #007bff
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateY(-20px);
+            opacity: 0
+        }
+
+        100% {
+            transform: translateY(0);
+            opacity: 1
+        }
+    }
+
+    .welcome-card {
+        max-width: 400px;
+        width: 100%;
+        margin: 50px auto;
+
+    }
+
+    #welcomeCard {
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+
+        background-color: #fff;
+        transition: transform .4s;
+        cursor: pointer;
+        background: linear-gradient(135deg, #1a1a1a 0, #2d3436 100%);
+        ;
+    }
+
+    #welcomeCard:hover {
+        transform: scale(1.1);
+        background-color: #007bff;
+        color: #fff;
+
+    }
+
+    /* Gaya untuk welcome heading */
+    .welcome-heading {
+        font-size: 3rem;
+        text-shadow: 7px 4px 2px rgba(65, 95, 93, .53);
+        animation: 2.5s ease-in-out infinite colorPulse;
+        font-weight: 700;
+        display: inline-block;
+        border-radius: 20px;
+
+    }
+
+    @keyframes colorPulse {
+
+        0%,
+        100% {
+            color: #007bff
+        }
+
+        50% {
+            color: #ff9800
+        }
+    }
+
+    .highlight {
+        font-weight: 700;
+        display: inline-block;
+        transition: opacity .5s ease-in-out
+    }
+
+    @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+            transform: scale(.8)
+        }
+
+        25%,
+        75% {
+            opacity: 1;
+            transform: scale(1)
+        }
+
+        100% {
+            opacity: 0;
+            transform: scale(1.2)
+        }
+    }
+
+    .changing-text {
+        font-weight: 700;
+        animation: 3s ease-in-out infinite fadeInOut
+    }
+
+    .custom-navbar {
+        background: rgba(33, 37, 41, .95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, .1)
+    }
+
+    .navbar-toggler-icon {
+        filter: brightness(0) invert(1)
+    }
+
+    .nav-link:hover {
+        color: #0d6efd !important
+    }
+
+    .lingkaran {
+        width: 80px !important;
+        height: 75px !important;
+        padding: 13px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer
+    }
+
+    .lingkaran {
+        transition: transform 0.3s;
+    }
+
+    /* Efek saat ikon ditekan */
+    .lingkaran:hover {
+        transform: scale(1.1);
+    }
+
+    .shopee-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+        /* Transisi untuk transformasi dan box-shadow */
+        padding: 15px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #1a1a1a 0, #2d3436 100%);
+        box-shadow: 4px 12px rgba(0, 0, 0, 0.1);
+        /* Bayangan awal */
+    }
+
+    .shopee-card:hover {
+        transform: scale(1.05);
+        /* Membesarkan card sedikit saat hover */
+        box-shadow: 0 8px 16px rgba(0, 204, 255, 0.6);
+        /* Bayangan lebih gelap dengan warna cyan */
+    }
+
+    /* Menambahkan efek pada tombol checkout saat hover */
+    .btn-checkout {
+        transition: background-color 0.3s, color 0.3s;
+        /* Transisi warna saat hover */
+    }
+
+    .btn-checkout:hover {
+        background-color: #007bff;
+        /* Mengubah warna latar belakang saat hover */
+        color: #fff;
+        /* Mengubah warna teks saat hover */
+    }
+
+
+    .icon-container,
+    .shopee-card {
+        align-items: center;
+        display: flex
+    }
+
+    .device-btn {
+        width: 100%;
+        margin-bottom: 10px
+    }
+
+    .contact-form .form-control,
+    .shopee-card {
+        margin-bottom: 15px
+    }
+
+    .shopee-card {
+        border: 1.5px solid #ddd;
+        padding: 20px;
+        border-radius: 8px;
+        justify-content: space-between
+    }
+
+    .icon-container {
+        width: 60px;
+        height: 60px;
+        background-color: #f1f1f1;
+        border-radius: 50%;
+        justify-content: center;
+        color: #007bff;
+        font-size: 24px;
+        margin-right: 15px
+    }
+
+    .btn-checkout,
+    .btn-checkout:hover {
+        background-color: #007bff
+    }
+
+    .product-name {
+        font-size: 16px;
+        font-weight: 700
+    }
+
+    .btn-checkout {
+        margin-left: auto;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px
+    }
+
+    #contact-section {
+        margin-top: 50px
+    }
+
+    .contact-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 8px
+    }
+
+    .contact-form h2 {
+        margin-bottom: 20px
+    }
+
+    .contact-form button {
+        background-color: #0d6efd;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: transform .3s
+    }
+
+
+
+    .contact-form button:hover {
+        background-color: #2d3436;
+        transform: scale(1.05)
+    }
+
+    .container .row .col-4 a {
+        display: inline-block;
+        transition: transform .3s, box-shadow .3s
+    }
+
+    .container .row .col-4 a img {
+        transition: transform .3s;
+        border-radius: 15%
+    }
+
+    .container .row .col-4 a:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, .4)
+    }
+
+    .container .row .col-4 a:hover img {
+        transform: scale(1.1)
+    }
+
+    .container .row .col-4 a[title=WhatsApp]:hover img {
+        background-color: #25d366
+    }
+
+    .container .row .col-4 a[title=Telegram]:hover img {
+        background-color: #08c
+    }
+
+    .container .row .col-4 a[title=Gmail]:hover img {
+        background-color: #d93025
+    }
+
+    .promo-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 50vh;
+        position: relative
+    }
+
+    .promo-box {
+        background: linear-gradient(135deg, #1a1a1a 0, #2d3436 100%);
+        border-radius: 20px;
+        padding: 20px;
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform .3s
+    }
+
+    .promo-box:hover {
+        transform: scale(1.05)
+    }
+
+
+    #promoMessage {
+        font-size: 14px;
+        color: #d9534f;
+        /* Default red for error */
+        font-weight: bold;
+    }
+
+    #promoMessage.success {
+        color: #28a745;
+        /* Green for success */
+    }
+
+    #promoMessage.warning {
+        color: #f0ad4e;
+        /* Yellow for warning */
+    }
+
+    .btn-custom {
+        background-color: #0d6efd;
+        color: #000
+    }
+
+    .btn-custom:hover {
+        background-color: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+    }
+
+    .result-message {
+        font-size: 1em;
+        margin-top: 10px
+    }
+
+    .alert-container {
+        position: fixed;
+        top: 0;
+        width: 100%
+    }
+
+    .terms-card {
+        max-width: 800px;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+        margin: 50px auto;
+        padding: 20px;
+        color: #f1f1f1;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #f1f1f1;
+    }
+
+    h3 {
+        color: #f1f1f1;
+    }
+
+    p {
+        color: #f1f1f1;
+        line-height: 1.6;
+    }
+
+    .payment-terms {
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+    }
+
+    .payment-terms ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .payment-terms ul li {
+        margin-bottom: 10px;
+    }
+
+    #deviceCheckerCard {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+        max-width: 400px;
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform .3s;
+        color: #fff;
+    }
+
+    #deviceCheckerCard:hover {
+        transform: scale(1.05);
+    }
+
+
+
+    /* CSS untuk Analisis Pengunjung di bagian paling bawah website */
+    /* CSS untuk bagian analisis pengunjung di bagian bawah */
+    .visitor-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 20px;
+        background-color: linear-gradient(135deg, #1a1a1a 0, #2d3436 100%);
+        ;
+        border-radius: 10px;
+        color: white;
+        margin-top: 20px;
+    }
+
+    .visitor-counter {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .visitor-counter .icon {
+        font-size: 3.5rem;
+        color: #ffffff;
+        margin-bottom: 15px;
+    }
+
+    .visitor-counter h1 {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+    .visitor-counter .count {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+
+    .statistics {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+    }
+
+    .statistics .stat {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .statistics .stat .icon {
+        font-size: 3rem;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+
+
+
+   /* Loading Overlay */
+   .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Custom Loader Animation */
+        .loader {
+            width: 60px;
+            aspect-ratio: 2;
+            --_g: no-repeat radial-gradient(circle closest-side, #007bff 90%, transparent);
+            background: 
+                var(--_g) 0%   50%,
+                var(--_g) 50%  50%,
+                var(--_g) 100% 50%;
+            background-size: calc(100% / 3) 50%;
+            animation: l3 1s infinite linear;
+        }
+
+        @keyframes l3 {
+            20% { background-position: 0% 0%, 50% 50%, 100% 50% }
+            40% { background-position: 0% 100%, 50% 0%, 100% 50% }
+            60% { background-position: 0% 50%, 50% 100%, 100% 0% }
+            80% { background-position: 0% 50%, 50% 50%, 100% 100% }
+        }
+
+        /* Show overlay with fade-in */
+        .loading-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .nav-link:hover {
+            color: cyan !important;
+            transition: 0.2s;
+        }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-light" style="text-shadow: 7px 4px 2px rgba(65,95,93,0.53);" href="#">
+                Solusi Fix Software
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-right" id="navbarText">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#About">
+                            <i class="bi bi-info-circle"></i> About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#Layanan">
+                            <i class="bi bi-briefcase"></i> Layanan
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#CekDevices">
+                            <i class="bi bi-phone"></i> Cek Device
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#Services">
+                            <i class="bi bi-tools"></i> Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#Promo">
+                            <i class="bi bi-tag"></i> Promo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#Contact" onclick="showLoading(event)">
+                            <i class="bi bi-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="testimoni.html">
+                            <i class="bi bi-chat-dots"></i> Testimoni
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="pusatBantuan.html">
+                            <i class="bi bi-question-circle"></i> Pusat Bantuan
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+
+
+    <div class="container-fluid banner" id="About">
+        <div class="container text-center d-flex justify-content-center align-items-center min-vh-80 mt-4">
+            <div class="card shadow-lg p-5 text-center" id="welcomeCard">
+                <h4 class="welcome-heading text-light">Selamat Datang di Solusi Fix Software</h4>
+                <h3 class="display-6 text-light">
+                    Solusi Lengkap untuk <span id="changingText" class="changing-text">Unlock Bootloader</span> dengan
+                    Layanan Terbaik dan Terpercaya!
+                </h3>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid layanan" style="background:linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%) ">
+        <div class="container text-center">
+            <h2 class="display-1 fw-bold" style="text-shadow: 6px 0px 2px rgba(65,95,93,0.58);" id="Layanan">Layanan
+            </h2>
+            <p class="text-light">Solusi Terbaik untuk Perangkat Anda
+                Kami hadir untuk memberikan layanan terbaik dalam mengoptimalkan performa perangkat Anda. Dengan
+                pengalaman profesional dan keahlian di bidang teknologi, kami siap menangani berbagai kebutuhan Anda:
+            </p>
+            <div class="row pt-4">
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd;">
+                        <i class="fas fa-mobile-alt fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">Flashing</h3>
+                    <p>Kecepatan Baru, Respons Lebih Cepat!
+                        "Revitalisasi performa perangkat Anda dan rasakan kecepatan yang optimal dengan layanan flashing
+                        kami</p>
+                </div>
+
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd;">
+                        <i class="fas fa-unlock-alt fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">UBL & Root</h3>
+                    <p>Nikmati proses buka bootloader dan root yang aman untuk perangkat HP Snapdragon dan MediaTek
+                        terbaru, memungkinkan Anda untuk memodifikasi sistem sesuai keinginan</p>
+                </div>
+
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd;">
+                        <i class="fas fa-shield-alt fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">Bypass FRP</h3>
+                    <p>Solusi Akses, Tanpa Hambatan!
+                        "Lupa akun? Kami bantu Anda membuka kembali akses dengan layanan Bypass FRP yang cepat dan aman
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd; ">
+                        <i class=" fas fa-unlock fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">Auth Server</h3>
+                    <p>Dengan Auth Server kami, Anda bisa melakukan flashing pada HP Snapdragon dan MediaTek terbaru
+                        dengan mudah, memastikan akses yang aman dan otentik</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd; ">
+                        <i class=" fab fa-android fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">Custom Rom</h3>
+                    <p>Gaya Baru, Fungsi Sesuai Pilihan!
+                        "Sesuaikan perangkat Anda dengan Custom ROM unik sesuai gaya dan kebutuhan Anda untuk pengalaman
+                        terbaik."</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="lingkaran"
+                        style="display: inline-block; border-radius: 20%; width: 120px; margin: auto; height: 120px; color: #fff; background-color: #0d6efd; ">
+                        <i class=" fas fa-tools fa-3x"></i></span>
+                    <h3 class="mt-3 fw-bold">Imei Repair</h3>
+                    <p>Sinyal Kembali, Komunikasi Lancar!
+                        "Atasi masalah konektivitas dan pulihkan sinyal perangkat Anda dengan layanan IMEI Repair yang
+                        aman dan profesional."</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="d-flex justify-content-center align-items-center min-vh-80 mt-4">
+        <div class="card shadow-sm p-4 text-center" id="deviceCheckerCard">
+            <h2 class="mb-4" id="CekDevices">Cek Root & Custom ROM Support</h2>
+
+            <form id="deviceForm">
+                <!-- Input untuk menulis jenis perangkat -->
+                <div class="mb-3">
+                    <label for="deviceInput" class="form-label">Masukkan Nama Perangkat Anda</label>
+                    <input type="text" class="form-control" id="deviceInput" placeholder="Cth: REDMI_NOTE_9" required>
+                </div>
+
+                <button type="button" class="btn btn-primary w-100" onclick="checkDeviceSupport()">Cek
+                    Kompatibilitas</button>
+            </form>
+
+            <div class="mt-3" id="notification" style="display:none;"></div>
+            <div id="result" class="mt-4"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="container mt-5" id="Services">
+        <!-- Card 1: Flashing -->
+        <div class="shopee-card">
+            <div class="icon-container">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div>
+                <h5 class="product-name">Flashing</h5>
+                <p class="product-price">Rp150.00</p>
+                <small class="text-muted">Jumlah: 1</small>
+            </div>
+            <button class="btn-checkout" onclick="sendToWhatsApp('Flashing', 'Rp150.00')">Checkout</button>
+        </div>
+
+        <!-- Card 2: UBL & Root -->
+        <div class="shopee-card">
+            <div class="icon-container">
+                <i class="fas fa-unlock-alt"></i>
+            </div>
+            <div>
+                <h5 class="product-name">UBL & Root</h5>
+                <p class="product-price">Rp60.000</p>
+                <small class="text-muted">Jumlah: 1</small>
+            </div>
+            <button class="btn-checkout" onclick="sendToWhatsApp('UBL & Root', 'Rp60.000')">Checkout</button>
+        </div>
+
+        <!-- Card 3: Bypass FRP -->
+        <div class="shopee-card">
+            <div class="icon-container">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div>
+                <h5 class="product-name">Bypass FRP</h5>
+                <p class="product-price">Rp150.00</p>
+                <small class="text-muted">Jumlah: 1</small>
+            </div>
+            <button class="btn-checkout"
+                onclick="sendToWhatsApp('Bypass FRP', 'Rp150.000 Not all devices')">Checkout</button>
+        </div>
+
+        <!-- Card 4: Bypass Auth -->
+        <div class="shopee-card">
+            <div class="icon-container">
+                <i class="fas fa-lock-open"></i>
+            </div>
+            <div>
+                <h5 class="product-name">Bypass Auth</h5>
+                <p class="product-price">Rp150.00</p>
+                <small class="text-muted">Jumlah: 1</small>
+            </div>
+            <button class="btn-checkout" onclick="sendToWhatsApp('Bypass Auth', 'Rp150.000')">Checkout</button>
+        </div>
+
+        <!-- Card 5: IMEI Repair -->
+        <div class="shopee-card">
+            <div class="icon-container">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div>
+                <h5 class="product-name">IMEI Repair</h5>
+                <p class="product-price">Rp170.00</p>
+
+            </div>
+            <button class="btn-checkout" onclick="sendToWhatsApp('IMEI Repair', 'Rp170.00')">Checkout</button>
+        </div>
+    </div>
+
+    <div class="alert-container" id="alert-container"></div>
+
+    <section class="promo-section" id="Promo">
+        <div class="promo-box">
+            <h2 class="mb-3">Masukkan Kode Promo</h2>
+            <p>Masukkan nama perangkat Anda untuk mengecek promo yang tersedia.</p>
+            <input type="text" id="promoCode" class="form-control mb-3"
+                placeholder="Masukkan kode promo (e.g., Samsung)">
+            <button onclick="checkPromo()" class="btn btn-custom w-100">Cek Promo</button>
+            <div id="result" class="result-message mt-3"></div>
+            <!-- This div will show messages like "Promo available" or "Device not available for promo" -->
+            <div id="promoMessage" class="promo-message mt-2"></div>
+        </div>
+    </section>
+
+
+
+    <div class="terms-card">
+        <h2 class="display-4 text-center mb-4">Syarat dan Pembayaran</h2>
+
+        <h3>1. Syarat Layanan Root</h3>
+        <p>Untuk menggunakan layanan root HP kami, Anda diwajibkan memenuhi beberapa syarat berikut:</p>
+        <ul>
+            <li>Memiliki perangkat Android yang kompatibel dengan proses root.</li>
+            <li>Pengguna harus menginstal aplikasi <strong>AnyDesk</strong> pada perangkat dan laptop mereka untuk
+                memudahkan proses remote.</li>
+            <li>Perangkat harus terhubung dengan jaringan internet yang stabil untuk mendukung kelancaran proses.</li>
+            <li>Memiliki laptop dengan spesifikasi yang cukup untuk mendukung proses root dengan AnyDesk.</li>
+        </ul>
+
+        <h3>2. Pembayaran Layanan</h3>
+        <div class="payment-terms">
+            <h4>Ketentuan Pembayaran</h4>
+            <ul>
+                <li>Pembayaran dilakukan penuh sebelum proses root dimulai.</li>
+                <li>Metode pembayaran dapat dilakukan melalui transfer bank, e-wallet, atau metode lain yang kami
+                    sediakan.</li>
+                <li>Kami tidak memberikan pengembalian dana setelah layanan dimulai, kecuali ada kesalahan teknis yang
+                    tidak dapat diperbaiki.</li>
+            </ul>
+            <h4>Informasi Pembayaran</h4>
+            <p>Setelah pembayaran dilakukan, harap konfirmasi kepada kami melalui WhatsApp atau email dengan menyertakan
+                bukti pembayaran. Kami akan memproses layanan segera setelah pembayaran dikonfirmasi.</p>
+
+            <div class="payment-methods mt-4">
+                <h5>Metode Pembayaran</h5>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><i class="bi bi-wallet2"></i> DANA</li>
+                    <li class="list-inline-item"><i class="bi bi-phone"></i> OVO</li>
+                    <li class="list-inline-item"><i class="bi bi-bank"></i> SeaBank</li>
+                    <li class="list-inline-item"><i class="bi bi-credit-card"></i> GoPay</li>
+                    <li class="list-inline-item"><i class="bi bi-qr-code"></i> QR Code</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container" id="Contact">
+        <div class="contact-form">
+            <h2>Hubungi Kami</h2>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" placeholder="Masukkan Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan Email Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Pesan</label>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Masukkan Pesan Anda"
+                        required></textarea>
+                </div>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+
+            <!-- Social Media Links (WhatsApp & Telegram) -->
+            <div class="container mt-5 mb-5">
+                <div class="row text-light justify-content-center align-items-center">
+                    <!-- WhatsApp -->
+                    <div class="container mt-5 mb-5">
+                        <div class="row text-light justify-content-center align-items-center">
+                            <!-- WhatsApp -->
+                            <div class="col-4 col-md-2 text-center mb-3">
+                                <a href="https://wa.me/6289515001716" target="_blank" title="WhatsApp">
+                                    <img src="img/WhatsApp-min.jpg" alt="WhatsApp" width="45px" height="45px">
+
+                                </a>
+                            </div>
+
+                            <!-- Telegram -->
+                            <div class="col-4 col-md-2 text-center mb-3">
+                                <a href="https://t.me/DimNotBad" target="_blank" title="Telegram">
+                                    <img src="img/Telegram_logo-min.jpg" alt="Telegram Logo" width="41px" height="41px"
+                                        loading="lazy">
+
+
+
+                                </a>
+                            </div>
+
+                            <!-- Gmail -->
+                            <div class="col-4 col-md-2 text-center mb-3">
+                                <a href="coomingsoon.html" target="_blank" title="Gmail">
+                                    <img src="img/Gmail_Icon_(2013-2020)-min_11zon.jpg" alt="Gmail Logo" width="35px"
+                                        height="32px">
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="visitor-section">
+                        <div class="visitor-counter">
+                            <i class="fas fa-users icon"></i>
+                            <div class="count" id="visitorCount">0</div>
+                            <p>Terima kasih telah mengunjungi situs kami!</p>
+                        </div>
+
+                        <div class="statistics">
+                            <div class="stat">
+                                <i class="fas fa-chart-line icon"></i>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-calendar-alt icon"></i>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-calendar-day icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <script src="script.js"></script>
+                    <!-- Bootstrap JS -->
+
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                        crossorigin="anonymous"></script>
+</body>
+
+</html>

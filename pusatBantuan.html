@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantuan & Panduan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-3px);
+        }
+
+        .back-button i {
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+            animation: fadeInDown 1s ease;
+        }
+
+        .main-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #00a2ff, #0088cc);
+        }
+
+        .guide-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.1),
+                0 8px 30px rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideUp 0.8s ease backwards;
+        }
+
+        .guide-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                0 15px 40px rgba(31, 38, 135, 0.25);
+        }
+
+        .guide-card h3 {
+            color: #00a2ff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-card i {
+            font-size: 1.5rem;
+        }
+
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+            animation: fadeIn 0.5s ease backwards;
+        }
+
+        .steps-list li::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(45deg, #00a2ff, #0088cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .customer-service {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        .cs-button {
+            background: linear-gradient(45deg, #00a2ff, #0088cc);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 136, 204, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cs-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
+        }
+
+        .cs-button i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, rgba(0, 162, 255, 0.1), rgba(0, 136, 204, 0.1));
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            border-left: 3px solid #00a2ff;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 162, 255, 0.4);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 15px rgba(0, 162, 255, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 162, 255, 0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .guide-card {
+                padding: 1.5rem;
+            }
+
+            .customer-service {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .cs-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cs-button i {
+                font-size: 1.5rem;
+            }
+
+            .back-button {
+                top: 15px;
+                left: 15px;
+                width: 35px;
+                height: 35px;
+            }
+
+            .back-button i {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+
+    <div class="container">
+        <h1 class="main-title">Pusat Bantuan</h1>
+
+        <div class="guide-card" style="animation-delay: 0.2s">
+            <h3><i class="bi bi-bookmark-check-fill"></i>Cara Pemesanan</h3>
+            <ul class="steps-list">
+                <li>Pilih layanan yang Anda inginkan dari katalog kami</li>
+                <li>klik pilihan yang ingin anda pesan</li>
+                <li>Diskusikan detail pesanan dan harga</li>
+                <li>Lakukan pembayaran sesuai metode yang disepakati</li>
+                <li>Tunggu pesanan Anda diproses</li>
+            </ul>
+        </div>
+
+        <div class="guide-card" style="animation-delay: 0.4s">
+            <h3><i class="bi bi-shield-check"></i>Syarat & Ketentuan</h3>
+            <h4 class="service-subtitle"><i class="bi bi-phone"></i>Layanan Root HP</h4>
+            <ul class="steps-list">
+                <li>Perangkat Android harus kompatibel dengan proses root</li>
+                <li>Wajib menginstal aplikasi AnyDesk di HP dan laptop</li>
+                <li>Koneksi internet yang stabil selama proses berlangsung</li>
+                <li>Laptop dengan spesifikasi memadai untuk proses root</li>
+            </ul>
+
+            <h4 class="service-subtitle mt-4"><i class="bi bi-cash-coin"></i>Ketentuan Pembayaran</h4>
+            <ul class="steps-list">
+                <li>Pembayaran penuh sebelum proses root dimulai</li>
+                <li>Tersedia pembayaran via transfer bank dan e-wallet</li>
+                <li>Tidak ada refund setelah proses dimulai</li>
+                <li>Konfirmasi pembayaran melalui WhatsApp/Telegram</li>
+            </ul>
+
+            <h4 class="service-subtitle mt-4"><i class="bi bi-exclamation-circle"></i>Ketentuan Umum</h4>
+            <ul class="steps-list">
+                <li>Minimal pemesanan sesuai ketentuan tiap layanan</li>
+                <li>Pesanan tidak dapat dibatalkan setelah diproses</li>
+                <li>Waktu pengerjaan bervariasi sesuai jenis layanan</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>Catatan Penting:</strong> Pastikan memberikan informasi yang lengkap dan akurat saat pemesanan untuk menghindari kendala dalam proses pengerjaan. Kami berhak menolak pemesanan jika syarat tidak terpenuhi.
+            </div>
+        </div>
+
+        <div class="guide-card" style="animation-delay: 0.6s">
+            <h3><i class="bi bi-clock-history"></i>Jam Operasional</h3>
+            <ul class="steps-list">
+                <li>Senin - Jumat: 09.00 - 21.00 WIB</li>
+                <li>Sabtu: 09.00 - 18.00 WIB</li>
+                <li>Minggu: 10.00 - 17.00 WIB</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Respons CS:</strong> Maksimal 1x24 jam di hari kerja
+            </div>
+        </div>
+    </div>
+
+    <a href="https://t.me/SolusiFix" class="customer-service">
+        <div class="cs-button">
+            <i class="bi bi-headset"></i>
+        </div>
+    </a>
+</body>
+</html>
