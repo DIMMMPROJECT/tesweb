@@ -199,10 +199,10 @@
             </div>
             <div>
                 <h5 class="product-name">Flashing</h5>
-                <p class="product-price">Rp150.00</p>
+                <p class="product-price">Rp150.000</p>
                 <small class="text-muted">Jumlah: 1</small>
             </div>
-            <button class="btn-checkout" onclick="sendToWhatsApp('Flashing', 'Rp150.00')">Checkout</button>
+            <button class="btn-checkout" onclick="sendToWhatsApp('Flashing', 'Rp150.000')">Checkout</button>
         </div>
 
         <!-- Card 2: UBL & Root -->
@@ -265,8 +265,7 @@
         <div class="promo-box">
             <h2 class="mb-3">Masukkan Kode Promo</h2>
             <p>Masukkan nama perangkat Anda untuk mengecek promo yang tersedia.</p>
-            <input type="text" id="promoCode" class="form-control mb-3"
-                placeholder="(cth:Redmi Note 9)">
+            <input type="text" id="promoCode" class="form-control mb-3" placeholder="(cth:Redmi Note 9)">
             <button onclick="checkPromo()" class="btn btn-custom w-100">Cek Promo</button>
             <div id="result" class="result-message mt-3"></div>
             <!-- This div will show messages like "Promo available" or "Device not available for promo" -->
@@ -421,7 +420,7 @@
                         function sendToWhatsApp(service, price) {
                             // Ganti nomor telepon berikut dengan nomor WhatsApp tujuan
                             const phoneNumber = "6289515001716"; // format nomor: gunakan kode negara (62 untuk Indonesia)
-                            const message = `Halo, saya ingin memesan layanan ${service} dengan harga ${price}.`;
+                            const message = `Halo, saya ingin memesan layanan ${service} dengan harga ${price}`;
 
                             // Membuka WhatsApp dengan pesan yang telah terisi
                             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, "_blank");
@@ -713,57 +712,57 @@ ${e}
                         }
 
 
-                        // Mendapatkan jumlah pengunjung dari Local Storage
-                        // Mendapatkan tanggal saat ini dan mengonversinya ke format timestamp untuk perhitungan waktu
                         const now = new Date().getTime();
-                        const oneWeek = 7 * 24 * 60 * 60 * 1000; // Satu minggu dalam milidetik
+                        const oneDay = 24 * 60 * 60 * 1000; // Satu hari dalam milidetik
+                        const oneWeek = 7 * oneDay; // Satu minggu dalam milidetik
 
-                        // Mendapatkan data pengunjung dari Local Storage
-                        let totalVisitors = parseInt(localStorage.getItem('totalVisitors')) || 0;
-                        let dailyVisitors = parseInt(localStorage.getItem('dailyVisitors')) || 0;
-                        let weeklyVisitors = parseInt(localStorage.getItem('weeklyVisitors')) || 0;
-                        let lastVisitTime = parseInt(localStorage.getItem('lastVisitTime')) || 0;
+                        // Memeriksa apakah pengunjung sudah dihitung dalam sesi ini
+                        if (!sessionStorage.getItem('visitorCounted')) {
+                            // Mendapatkan data pengunjung dari Local Storage
+                            let totalVisitors = parseInt(localStorage.getItem('totalVisitors')) || 0;
+                            let dailyVisitors = parseInt(localStorage.getItem('dailyVisitors')) || 0;
+                            let weeklyVisitors = parseInt(localStorage.getItem('weeklyVisitors')) || 0;
+                            let lastVisitTime = parseInt(localStorage.getItem('lastVisitTime')) || 0;
 
-                        // Mendapatkan tanggal saat ini dan bulan untuk reset pengunjung harian dan bulanan
-                        const today = new Date().toISOString().slice(0, 10);
-                        const currentMonth = new Date().toISOString().slice(0, 7);
+                            // Mendapatkan tanggal saat ini untuk reset pengunjung harian dan mingguan
+                            const today = new Date().toISOString().slice(0, 10); // Format YYYY-MM-DD
+                            const currentWeek = Math.floor(now / oneWeek); // Menghitung minggu berdasarkan epoch time
 
-                        // Mendapatkan tanggal terakhir pengunjung harian dan bulanan
-                        let lastVisitDate = localStorage.getItem('lastVisitDate') || '';
-                        let lastVisitMonth = localStorage.getItem('lastVisitMonth') || '';
+                            // Mendapatkan tanggal terakhir pengunjung harian dan mingguan
+                            let lastVisitDate = localStorage.getItem('lastVisitDate') || '';
+                            let lastVisitWeek = parseInt(localStorage.getItem('lastVisitWeek')) || 0;
 
-                        // Cek apakah satu minggu telah berlalu sejak kunjungan terakhir
-                        if (now - lastVisitTime >= oneWeek) {
-                            // Pengunjung baru dihitung hanya setelah lebih dari satu minggu
+                            // Cek apakah satu minggu telah berlalu sejak kunjungan terakhir
+                            if (currentWeek !== lastVisitWeek) {
+                                weeklyVisitors = 1; // Reset dan mulai dari 1 untuk minggu baru
+                                localStorage.setItem('lastVisitWeek', currentWeek); // Update minggu terakhir
+                            } else {
+                                weeklyVisitors++; // Tambahkan untuk kunjungan di minggu yang sama
+                            }
+
+                            // Reset pengunjung harian jika hari baru dimulai
+                            if (today !== lastVisitDate) {
+                                dailyVisitors = 1; // Mulai dari 1 untuk kunjungan hari ini
+                                localStorage.setItem('lastVisitDate', today); // Update tanggal terakhir
+                            } else {
+                                dailyVisitors++; // Tambahkan untuk kunjungan hari ini
+                            }
+
+                            // Tambahkan total pengunjung setiap kali ada pengunjung baru
                             totalVisitors++;
-                            weeklyVisitors++;
-                            localStorage.setItem('lastVisitTime', now); // Update waktu kunjungan terakhir
-                        }
 
-                        // Reset pengunjung harian jika hari baru dimulai
-                        if (today !== lastVisitDate) {
-                            dailyVisitors = 1; // Mulai dari 1 untuk kunjungan hari ini
-                            localStorage.setItem('lastVisitDate', today); // Perbarui tanggal terakhir
-                        } else {
-                            dailyVisitors++; // Tambahkan untuk kunjungan hari ini
-                        }
+                            // Simpan data pengunjung kembali ke Local Storage
+                            localStorage.setItem('totalVisitors', totalVisitors);
+                            localStorage.setItem('dailyVisitors', dailyVisitors);
+                            localStorage.setItem('weeklyVisitors', weeklyVisitors);
+                            localStorage.setItem('lastVisitTime', now);
 
-                        // Reset pengunjung bulanan jika bulan baru dimulai
-                        if (currentMonth !== lastVisitMonth) {
-                            weeklyVisitors = 1; // Reset untuk minggu pertama bulan baru
-                            localStorage.setItem('lastVisitMonth', currentMonth); // Perbarui bulan terakhir
-                        } else {
-                            weeklyVisitors++; // Tambahkan untuk minggu yang masih berjalan
+                            // Tandai bahwa pengunjung sudah dihitung dalam sesi ini
+                            sessionStorage.setItem('visitorCounted', 'true');
                         }
-
-                        // Simpan data pengunjung kembali ke Local Storage
-                        localStorage.setItem('totalVisitors', totalVisitors);
-                        localStorage.setItem('dailyVisitors', dailyVisitors);
-                        localStorage.setItem('weeklyVisitors', weeklyVisitors);
 
                         // Tampilkan jumlah pengunjung di halaman
-                        document.getElementById('visitorCount').textContent = totalVisitors;
-
+                        document.getElementById('visitorCount').textContent = localStorage.getItem('totalVisitors');
 
 
                     </script>
